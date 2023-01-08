@@ -41,7 +41,7 @@ public class ClientServlet extends HttpServlet {
                 if (req.getParameter("action").equals("find")) {
                     clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
                 } else if (req.getParameter("action").equals("find_fio")) {
-                    clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
+                    clients  =dbService.findClientsByFio(req.getParameter("full_name"));
                 }
             } else {
                 List<MyEntity> list = dbService.getall("client");

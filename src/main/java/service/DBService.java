@@ -70,7 +70,7 @@ public class DBService {
                 break;
             case "hall":
                 query = HallService.update((Hall) entity);
-                ;                break;
+                break;
             case "ticket":
                 query = TicketService.update((Ticket) entity);
                 break;

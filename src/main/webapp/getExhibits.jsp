@@ -97,8 +97,6 @@
     <% for (Exhibit client : exhibits) {%>
     <tr>
         <td><%= client.getID() %></td>
-        <td><%= client.getFullName() %></td>
-        <td><%= client.getEmail()%></td>
     </tr>
     <% } %>
     </tbody>

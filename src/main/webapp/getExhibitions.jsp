@@ -88,7 +88,6 @@
         <td>country</td>
         <td>city</td>
         <td>venue</td>
-        <td>exhibits</td>
     </tr>
     </thead>
     <tbody>
@@ -102,7 +101,6 @@
         <td><%= exhibition.getCountry()%></td>
         <td><%= exhibition.getCity()%></td>
         <td><%= exhibition.getVenue()%></td>
-        <td><%= exhibition.getExhibitList().toString()%></td>
     </tr>
     <% } %>
     </tbody>

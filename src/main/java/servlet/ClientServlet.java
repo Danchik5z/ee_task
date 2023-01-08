@@ -44,8 +44,6 @@ public class ClientServlet extends HttpServlet {
                     clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
                 }
             } else {
-                req.setAttribute("clients", clients);
-                req.getRequestDispatcher("/getClients.jsp").forward(req, resp);
                 List<MyEntity> list = dbService.getall("client");
                 for (MyEntity entity : list) {
                     clients.add((Client) entity);

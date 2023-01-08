@@ -57,12 +57,13 @@ public class UpdateDeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String className = req.getParameter("class");
+
         switch (className) {
             case "client":
                 Client client = new Client(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), req.getParameter("email"));
                 try {
                     dbService.update("client",client);
-                    resp.sendRedirect("/clientclient");
+                    resp.sendRedirect("/clientclient" );
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

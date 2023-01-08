@@ -36,10 +36,18 @@ public class ClientServlet extends HttpServlet {
             req.setAttribute("noOfPages", noOfPages);
             req.setAttribute("page", page);
             req.setAttribute("recordsPerPage", recordsPerPage);
-            List<MyEntity> list = dbService.getall("client");
             List<Client> clients = new ArrayList<>();
-            for(MyEntity entity: list){
-                clients.add((Client) entity);
+            if(req.getParameter("action").equals("find")) {
+                clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
+            } else if (req.getParameter("action").equals("find_fio")) {
+                clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
+            } else {
+                req.setAttribute("clients", clients);
+                req.getRequestDispatcher("/getClients.jsp").forward(req, resp);
+                List<MyEntity> list = dbService.getall("client");
+                for (MyEntity entity : list) {
+                    clients.add((Client) entity);
+                }
             }
             req.setAttribute("clients", clients);
             req.getRequestDispatcher("/getClients.jsp").forward(req, resp);
@@ -50,17 +58,6 @@ public class ClientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            List<Client> clients = new ArrayList<>();
-            if(req.getParameter("action").equals("find")) {
-                clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
-            } else if (req.getParameter("action").equals("find_fio")) {
-                clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
-            }
-            req.setAttribute("clients", clients);
-            req.getRequestDispatcher("/getClients.jsp").forward(req, resp);
-        } catch (SQLException | ServletException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }

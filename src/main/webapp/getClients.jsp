@@ -26,7 +26,7 @@
 
 <h>find by id</h>
 
-<form action="${pageContext.request.contextPath}/clientclient" method = "post">
+<form action="${pageContext.request.contextPath}/clientclient" method = "get">
   <input type="hidden" name="action" value="find"/>
   <label for="find_id">id:</label><br>
   <input type = "number" name="find_id" id = "find_id">
@@ -35,7 +35,7 @@
 
 <h>find by fio</h>
 
-<form action="${pageContext.request.contextPath}/clientclient" method = "post">
+<form action="${pageContext.request.contextPath}/clientclient" method = "get">
   <input type="hidden" name="action" value="find_fio"/>
   <label for="full_name">id:</label><br>
   <input type = "text" name="full_name" id = "full_name">
@@ -53,6 +53,7 @@
   </thead>
   <tbody>
   <% List<Client> clients = (List<Client>) request.getAttribute("clients");
+    request.setCharacterEncoding("UTF-8");
     int pageNo = (int) request.getAttribute("page");
     int recordsPerPage = (int) request.getAttribute("recordsPerPage");
     int noOfPages = (int) request.getAttribute("noOfPages");

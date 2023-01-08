@@ -56,7 +56,8 @@ public class UpdateDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        switch (req.getParameter("class")) {
+        String className = req.getParameter("class");
+        switch (className) {
             case "client":
                 Client client = new Client(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), req.getParameter("email"));
                 try {

@@ -32,7 +32,7 @@ public class HallService {
     }
 
     public static String addExhibitToHall(int hall_id, int exhibit_id){
-        return "UPDATE exhibit SET hall_id"+ hall_id+" WHERE exhibit_id = " + exhibit_id;
+        return "UPDATE exhibit SET hall_id = "+ hall_id+" WHERE exhibit_id = " + exhibit_id;
     }
 
     public static String removeExhibitFromHall(int exhibit_id){

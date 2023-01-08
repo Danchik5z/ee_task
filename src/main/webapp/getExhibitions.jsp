@@ -96,7 +96,7 @@
     <% for (Exhibition exhibition : exhibitions) {%>
     <tr>
         <td><%= exhibition.getId() %></td>
-        <td><%= exhibition.getStartDate() %></td>
+        <td><%= exhibition.getDescription() %></td>
         <td><%= exhibition.getEndDate()%></td>
         <td><%= exhibition.getName()%></td>
         <td><%= exhibition.getCountry()%></td>

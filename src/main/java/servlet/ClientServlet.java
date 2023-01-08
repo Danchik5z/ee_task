@@ -21,7 +21,21 @@ public class ClientServlet extends HttpServlet {
     DBService dbService = DBService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int page = 1;
+        int recordsPerPage = 50;
+
+        if (req.getParameter("page") != null)
+            page = Integer.parseInt(req.getParameter("page"));
+
         try {
+            int noOfRecords = dbService.getall("client").size();
+            int noOfPages = noOfRecords / recordsPerPage;
+            if (noOfRecords % recordsPerPage != 0) {
+                noOfPages++;
+            }
+            req.setAttribute("noOfPages", noOfPages);
+            req.setAttribute("page", page);
+            req.setAttribute("recordsPerPage", recordsPerPage);
             List<MyEntity> list = dbService.getall("client");
             List<Client> clients = new ArrayList<>();
             for(MyEntity entity: list){
@@ -38,7 +52,11 @@ public class ClientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             List<Client> clients = new ArrayList<>();
-            clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
+            if(req.getParameter("action").equals("find")) {
+                clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
+            } else if (req.getParameter("action").equals("find_fio")) {
+                clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
+            }
             req.setAttribute("clients", clients);
             req.getRequestDispatcher("/getClients.jsp").forward(req, resp);
         } catch (SQLException | ServletException e) {

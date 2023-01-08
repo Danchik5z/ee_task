@@ -11,17 +11,13 @@ public class TicketService {
         return "Insert into ticket(client_id,hall_id,start_date,price,hour) VALUES(" +
                 ticket.getClientID() + "," +
                 ticket.getHallID() + "," +
-                ticket.getStartDate() + "," +
-                ticket.getPrice() + "," +
-                ticket.getHour() + ")";
+                ticket.getPrice() + ")";
     }
 
     public static String update(Ticket ticket) {
         return "UPDATE ticket SET client_id = " + ticket.getClientID() +
                 ", hall_id = " + ticket.getHallID() +
-                ", start_date = " + ticket.getStartDate() +
                 ", price = " + ticket.getPrice() +
-                ", hour = " + ticket.getHour() +
                 " WHERE ticket_id = " + ticket.getID();
     }
 
@@ -46,8 +42,6 @@ public class TicketService {
         return new Ticket(resultSet.getInt("ticket_id"),
                 resultSet.getInt("client_id"),
                 resultSet.getInt("hall_id"),
-                resultSet.getDate("start_date"),
-                resultSet.getInt("price"),
-                resultSet.getInt("hour"));
+                resultSet.getInt("price"));
     }
 }

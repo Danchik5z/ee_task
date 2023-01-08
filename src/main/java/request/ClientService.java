@@ -14,7 +14,7 @@ public class ClientService {
 
     public static String update(Client client){
         return "UPDATE client SET full_name = '" + client.getFullName() +
-                "' email = '" + client.getEmail() +
+                "', email = '" + client.getEmail() +
                 "' WHERE client_id = " + client.getID();
     }
 

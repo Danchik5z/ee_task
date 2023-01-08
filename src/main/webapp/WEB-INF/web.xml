@@ -77,9 +77,19 @@
         <servlet-name>HallServlet</servlet-name>
         <servlet-class>servlet.HallsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateDeleteServlet</servlet-name>
+        <servlet-class>servlet.UpdateDeleteServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>HallServlet</servlet-name>
         <url-pattern>/hall</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateDeleteServlet</servlet-name>
+        <url-pattern>/update_delete</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

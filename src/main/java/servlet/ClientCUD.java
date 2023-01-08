@@ -26,19 +26,10 @@ public class ClientCUD extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(req.getParameter("action").equals("create")){
+        if(req.getParameter("action").equals("create")) {
             Client client = new Client(0, req.getParameter("name"), req.getParameter("email"));
             try {
                 dbService.insert("client", client);
-                req.getRequestDispatcher("/clientclient").forward(req, resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } else if(req.getParameter("action").equals("update")){
-
-            Client client = new Client(Integer.parseInt(req.getParameter("update_id")), req.getParameter("u_name"), req.getParameter("u_email"));
-            try {
-                dbService.update("client",client);
                 req.getRequestDispatcher("/clientclient").forward(req, resp);
             } catch (SQLException e) {
                 throw new RuntimeException(e);

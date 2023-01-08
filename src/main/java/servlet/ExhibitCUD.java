@@ -29,11 +29,10 @@ public class ExhibitCUD extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("action").equals("create")){
             Exhibit exhibit = new Exhibit(0,
-                    Integer.parseInt(req.getParameter("hallnumber")),
                     req.getParameter("name"),
-                    Integer.parseInt(req.getParameter("year")),
-                    req.getParameter("description"),
-                    req.getParameter("author"));
+                    req.getParameter("author"),
+                    Integer.parseInt(req.getParameter("hallnumber")),
+                    req.getParameter("description"));
             try {
                 dbService.insert("exhibit", exhibit);
                 req.getRequestDispatcher("/exhibit").forward(req, resp);
@@ -43,11 +42,10 @@ public class ExhibitCUD extends HttpServlet {
         } else if(req.getParameter("action").equals("update")){
 
             Exhibit exhibit = new Exhibit(Integer.parseInt(req.getParameter("update_id")),
-                    Integer.parseInt(req.getParameter("u_hallnumber")),
-                    req.getParameter("u_name"),
-                    Integer.parseInt(req.getParameter("u_year")),
-                    req.getParameter("u_description"),
-                    req.getParameter("u_author"));
+                    req.getParameter("name"),
+                    req.getParameter("author"),
+                    Integer.parseInt(req.getParameter("hallnumber")),
+                    req.getParameter("description"));
             try {
                 dbService.update("exhibit",exhibit);
                 req.getRequestDispatcher("/exhibit").forward(req, resp);

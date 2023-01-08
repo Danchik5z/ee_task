@@ -23,19 +23,8 @@
   <button type="submit">add</button>
 </form>
 
-<h>Update</h>
-<form action="${pageContext.request.contextPath}/client_crud" method = "post">
-  <input type="hidden" name="action" value="update"/>
-  <label for = "update_id">id:</label>
-  <input type="number" name = "update_id" id = "update_id">
-  <label for="u_name">name:</label><br>
-  <input type = "text" name="u_name" id = "u_name">
-  <label for="u_email">email:</label><br>
-  <input type = "text" name="u_email" id = "u_email">
 
-  <button type="submit">add</button>
-</form>
-<h>find</h>
+<h>find by id</h>
 
 <form action="${pageContext.request.contextPath}/clientclient" method = "post">
   <input type="hidden" name="action" value="find"/>
@@ -43,13 +32,16 @@
   <input type = "number" name="find_id" id = "find_id">
   <button type="submit">find</button>
 </form>
-<h1 >delete</h1>
-<form action="${pageContext.request.contextPath}/client_crud" method = "get">
-  <input type="hidden" name="action" value="delete"/>
-  <label for="delete_id">id:</label><br>
-  <input type = "number" name="delete_id" id = "delete_id">
-  <button type="submit">delete</button>
+
+<h>find by fio</h>
+
+<form action="${pageContext.request.contextPath}/clientclient" method = "post">
+  <input type="hidden" name="action" value="find_fio"/>
+  <label for="full_name">id:</label><br>
+  <input type = "text" name="full_name" id = "full_name">
+  <button type="submit">find</button>
 </form>
+
 <table>
   <thead>
   <tr>
@@ -60,16 +52,56 @@
   </tr>
   </thead>
   <tbody>
-  <% List<Client> clients = (List<Client>) request.getAttribute("clients"); %>
-  <% for (Client client : clients) {%>
+  <% List<Client> clients = (List<Client>) request.getAttribute("clients");
+    int pageNo = (int) request.getAttribute("page");
+    int recordsPerPage = (int) request.getAttribute("recordsPerPage");
+    int noOfPages = (int) request.getAttribute("noOfPages");
+    int start = (pageNo-1) * recordsPerPage;
+    if(start != 0){
+      start--;
+    }%>
+  <% for (int i = start; i < (pageNo * recordsPerPage) - 1 && i < clients.size(); i++ ) {%>
+  <% Client client = clients.get(i);%>
   <tr>
     <td><%= client.getID() %></td>
     <td><%= client.getFullName() %></td>
     <td><%= client.getEmail()%></td>
+    <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+      <input type = "hidden" name = "update" value = <%=client.getID()%>>
+      <input type = "hidden" name = "class" value="client">
+      <input type = "submit" value="update">
+    </form></td>
+    <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+      <input type = "hidden" name = "delete" value = <%=client.getID()%>>
+      <input type = "hidden" name = "class" value="client">
+      <input type = "submit" value="delete">
+    </form></td>
   </tr>
   <% } %>
   </tbody>
 </table>
+
+<table>
+  <tr>
+
+    <% if(pageNo!=1){ %>
+    <td><a href="${pageContext.request.contextPath}/clientclient?page=<%=pageNo - 1%>">Previous</a></td>
+    <%}%>
+    <% for(int i = 1; i <= noOfPages; i++){
+      if(i == pageNo){ %>
+    <td><%=i%></td>
+    <% }
+    else{ %>
+    <td><a href="${pageContext.request.contextPath}/clientclient?page=<%=i%>"><%=i%></a></td>
+    <%}
+    }%>
+    <%--For displaying Next link --%>
+    <% if(pageNo!=noOfPages){ %>
+    <td><a href="${pageContext.request.contextPath}/clientclient?page=<%=pageNo + 1%>">Next</a></td>
+    <%}%>
+  </tr>
+</table>
+
 
 </body>
 </html>

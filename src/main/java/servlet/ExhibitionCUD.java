@@ -30,11 +30,8 @@ public class ExhibitionCUD extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("action").equals("create")){
-            Exhibition exhibition = new Exhibition(0, Date.valueOf(req.getParameter("start")), Date.valueOf(req.getParameter("end")),
-                    req.getParameter("name"),
-                    req.getParameter("country"),
-                    req.getParameter("city"),
-                    req.getParameter("venue"));
+            Exhibition exhibition = new Exhibition(0, Date.valueOf(req.getParameter("start")),
+                    req.getParameter("description"));
             try {
                 dbService.insert("exhibitions", exhibition);
                 req.getRequestDispatcher("/exhibition").forward(req, resp);
@@ -43,13 +40,9 @@ public class ExhibitionCUD extends HttpServlet {
             }
         } else if(req.getParameter("action").equals("update")){
 
-            Exhibition exhibition = new Exhibition(Integer.parseInt(req.getParameter("update_id")),
+            Exhibition exhibition = new Exhibition(Integer.parseInt(req.getParameter("id")),
                     Date.valueOf(req.getParameter("start")),
-                    Date.valueOf(req.getParameter("end")),
-                    req.getParameter("name"),
-                    req.getParameter("country"),
-                    req.getParameter("city"),
-                    req.getParameter("venue"));
+                    req.getParameter("description"));
             try {
                 dbService.update("client",exhibition);
                 req.getRequestDispatcher("/exhibition").forward(req, resp);

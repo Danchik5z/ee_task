@@ -168,6 +168,17 @@ public class DBService {
         return result;
     }
 
+    public List<Client> findClientsByFio(String fio) throws SQLException{
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM client WHERE full_name = " + fio + ";");
+        ResultSet rs = ps.executeQuery();
+        List<Client> result = new ArrayList<>();
+        while(rs.next()) {
+            Client client = ClientService.parse(rs);
+            result.add(client);
+        }
+        return result;
+    }
+
     public List<Exhibit> getExhibitsForExhibitions(Exhibition exhibition) throws SQLException {
         PreparedStatement ps = con.prepareStatement(ExhibitionService.getExhibits(exhibition));
         ResultSet rs = ps.executeQuery();

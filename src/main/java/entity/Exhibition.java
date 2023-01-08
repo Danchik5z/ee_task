@@ -1,6 +1,5 @@
 package entity;
 
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.List;
 
@@ -8,16 +7,7 @@ public class Exhibition extends MyEntity{
 
     private int id;
     private Date startDate;
-
-    private Date endDate;
-
-    private String name;
-
-    private String country;
-
-    private String city;
-
-    private String venue;
+    private String description;
 
     private List<Exhibit> exhibitList;
 
@@ -29,70 +19,34 @@ public class Exhibition extends MyEntity{
         this.exhibitList = exhibitList;
     }
 
-    public Exhibition(int id, Date startDate, Date endDate,
-                      String name, String country, String city, String venue) {
+    public Exhibition(int id, Date startDate, String description) {
         this.id = id;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.name = name;
-        this.country = country;
-        this.city = city;
-        this.venue = venue;
+        this.description = description;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+        public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     public Date getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
     }
 }

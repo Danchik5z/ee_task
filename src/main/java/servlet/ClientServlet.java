@@ -1,7 +1,6 @@
 package servlet;
 
 
-
 import entity.Client;
 import entity.MyEntity;
 import service.DBService;
@@ -19,6 +18,7 @@ import java.util.List;
 @WebServlet
 public class ClientServlet extends HttpServlet {
     DBService dbService = DBService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int page = 1;
@@ -37,10 +37,12 @@ public class ClientServlet extends HttpServlet {
             req.setAttribute("page", page);
             req.setAttribute("recordsPerPage", recordsPerPage);
             List<Client> clients = new ArrayList<>();
-            if(req.getParameter("action").equals("find")) {
-                clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
-            } else if (req.getParameter("action").equals("find_fio")) {
-                clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
+            if (req.getParameter("action") != null) {
+                if (req.getParameter("action").equals("find")) {
+                    clients.add((Client) dbService.find("client", Integer.parseInt(req.getParameter("find_id"))));
+                } else if (req.getParameter("action").equals("find_fio")) {
+                    clients.add((Client) dbService.findClientsByFio(req.getParameter("full_name")));
+                }
             } else {
                 req.setAttribute("clients", clients);
                 req.getRequestDispatcher("/getClients.jsp").forward(req, resp);

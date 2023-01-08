@@ -62,7 +62,7 @@ public class UpdateDeleteServlet extends HttpServlet {
                 Client client = new Client(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), req.getParameter("email"));
                 try {
                     dbService.update("client",client);
-                    req.getRequestDispatcher("/clientclient").forward(req, resp);
+                    req.getRequestDispatcher(req.getContextPath() + "/clientclient").forward(req, resp);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

@@ -19,7 +19,7 @@ public class UpdateDeleteServlet extends HttpServlet {
         if (req.getParameter("delete") != null) {
             try {
                 dbService.delete(req.getParameter("class"), Integer.parseInt(req.getParameter("delete")));
-                req.getRequestDispatcher("/").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/clientclient");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -63,7 +63,7 @@ public class UpdateDeleteServlet extends HttpServlet {
                 Client client = new Client(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), req.getParameter("email"));
                 try {
                     dbService.update("client",client);
-                    resp.sendRedirect("/clientclient" );
+                    resp.sendRedirect(req.getContextPath() + "/clientclient" );
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

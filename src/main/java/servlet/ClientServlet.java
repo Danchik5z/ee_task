@@ -23,6 +23,7 @@ public class ClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int page = 1;
         int recordsPerPage = 50;
+        
 
         if (req.getParameter("page") != null)
             page = Integer.parseInt(req.getParameter("page"));

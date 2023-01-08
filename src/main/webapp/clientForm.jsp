@@ -14,7 +14,9 @@
 <body>
 <h>Update</h>
 <% Client client = (Client) request.getAttribute("client");
-request.setCharacterEncoding("UTF-8");%>
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
+%>
 <form action="${pageContext.request.contextPath}/update_delete" method = "post">
 
 

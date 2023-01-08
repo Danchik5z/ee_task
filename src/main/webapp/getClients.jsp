@@ -54,6 +54,7 @@
   <tbody>
   <% List<Client> clients = (List<Client>) request.getAttribute("clients");
     request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
     int pageNo = (int) request.getAttribute("page");
     int recordsPerPage = (int) request.getAttribute("recordsPerPage");
     int noOfPages = (int) request.getAttribute("noOfPages");

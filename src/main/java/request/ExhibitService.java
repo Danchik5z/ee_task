@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 public class ExhibitService {
     public static String insert(Exhibit exhibit) {
-        return "Insert into exhibit(hall_id, description) VALUES(" +
-                exhibit.getHallNumber() + "," +
+        return "Insert into exhibit(hall_id,description) VALUES('" +
+                exhibit.getHallNumber() + "','" +
                 exhibit.getDescription() + "')";
     }
 
@@ -37,7 +37,7 @@ public class ExhibitService {
 
     public static Exhibit parse(ResultSet resultSet) throws SQLException {
         return new Exhibit(resultSet.getInt("exhibit_id"),
-                resultSet.getString("name"), resultSet.getString("author"), resultSet.getInt("hall_id"),
+                resultSet.getInt("hall_id"),
                 resultSet.getString("description"));
     }
 }

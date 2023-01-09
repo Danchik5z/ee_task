@@ -31,17 +31,9 @@
 <form action="${pageContext.request.contextPath}/exhibit_crud" method = "post">
     <input type="hidden" name="action" value="create"/>
     <label for="hallnumber">hallnumber:</label><br>
-    <input type = "number" name="hallnumber" id = "hallnumber">
-    <label for="name">name:</label><br>
-    <input type = "text" name="name" id = "name">
-
-    <label for="year">name:</label><br>
-    <input type = "number" name="year" id = "year">
-
+    <input type = "number" name="hallnumber" id = "hallnumber"><br>
     <label for="description">descripotion:</label><br>
     <input type = "text" name="description" id = "description">
-    <label for="author">author:</label><br>
-    <input type = "text" name="author" id = "author">
 
     <button type="submit">add</button>
 </form>
@@ -50,23 +42,14 @@
 <form action="${pageContext.request.contextPath}/exhibit_crud" method = "post">
     <input type="hidden" name="action" value="create"/>
     <label for="update_id">id:</label><br>
-    <input type = "number" name="update_id" id = "update_id">
+    <input type = "number" name="update_id" id = "update_id"><br>
     <label for="u_hallnumber">hallnumber:</label><br>
-    <input type = "number" name="u_hallnumber" id = "u_hallnumber">
-    <label for="u_name">name:</label><br>
-    <input type = "text" name="u_name" id = "u_name">
-
-    <label for="u_year">name:</label><br>
-    <input type = "number" name="u_year" id = "u_year">
-
+    <input type = "number" name="u_hallnumber" id = "u_hallnumber"><br>
     <label for="u_description">descripotion:</label><br>
     <input type = "text" name="u_description" id = "u_description">
-    <label for="u_author">author:</label><br>
-    <input type = "text" name="u_author" id = "u_author">
 
     <button type="submit">add</button>
 
-    <button type="submit">add</button>
 </form>
 <h>find</h>
 
@@ -76,20 +59,12 @@
     <input type = "number" name="find_id" id = "find_id">
     <button type="submit">find</button>
 </form>
-<h1 >delete</h1>
-<form action="${pageContext.request.contextPath}/exhibit_crud" method = "post">
-    <input type="hidden" name="action" value="delete"/>
-    <label for="delete_id">id:</label><br>
-    <input type = "number" name="delete_id" id = "delete_id">
-    <button type="submit">delete</button>
-</form>
 <table>
     <thead>
     <tr>
         <td>id</td>
-        <td>fio</td>
-        <td>email</td>
-        <td>group_id</td>
+        <td>hallNumber</td>
+        <td>description</td>
     </tr>
     </thead>
     <tbody>
@@ -97,6 +72,18 @@
     <% for (Exhibit client : exhibits) {%>
     <tr>
         <td><%= client.getID() %></td>
+        <td><%=client.getHallNumber()%></td>
+        <td><%=client.getDescription()%></td>
+        <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+            <input type = "hidden" name = "update" value = <%=client.getID()%>>
+            <input type = "hidden" name = "class" value="client">
+            <input type = "submit" value="update">
+        </form></td>
+        <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+            <input type = "hidden" name = "delete" value = <%=client.getID()%>>
+            <input type = "hidden" name = "class" value="client">
+            <input type = "submit" value="delete">
+        </form></td>
     </tr>
     <% } %>
     </tbody>

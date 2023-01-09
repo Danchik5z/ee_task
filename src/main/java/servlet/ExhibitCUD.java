@@ -19,7 +19,7 @@ public class ExhibitCUD extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             dbService.delete("exhibit", Integer.parseInt(req.getParameter("delete_id")));
-            req.getRequestDispatcher("/exhibit").forward(req, resp);
+            req.getRequestDispatcher("/").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -29,8 +29,6 @@ public class ExhibitCUD extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("action").equals("create")){
             Exhibit exhibit = new Exhibit(0,
-                    req.getParameter("name"),
-                    req.getParameter("author"),
                     Integer.parseInt(req.getParameter("hallnumber")),
                     req.getParameter("description"));
             try {
@@ -42,8 +40,6 @@ public class ExhibitCUD extends HttpServlet {
         } else if(req.getParameter("action").equals("update")){
 
             Exhibit exhibit = new Exhibit(Integer.parseInt(req.getParameter("update_id")),
-                    req.getParameter("name"),
-                    req.getParameter("author"),
                     Integer.parseInt(req.getParameter("hallnumber")),
                     req.getParameter("description"));
             try {

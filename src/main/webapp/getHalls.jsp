@@ -1,6 +1,8 @@
 <%@ page import="entity.Client" %>
 <%@ page import="java.util.List" %>
-<%@ page import="entity.Exhibition" %><%--
+<%@ page import="entity.Exhibition" %>
+<%@ page import="entity.Ticket" %>
+<%@ page import="entity.Hall" %><%--
   Created by IntelliJ IDEA.
   User: Даня
   Date: 27.12.2022
@@ -16,16 +18,9 @@
 <h>Create</h>
 <form action="${pageContext.request.contextPath}/exhibition_crud" method = "post">
   <input type="hidden" name="action" value="create"/>
-  <label for="start">start Date:</label><br>
-  <input type = "date" name="start" id = "start">
-  <label for="end">end Date:</label><br>
-  <input type = "date" name="end" id = "end">
-  <label for="country">country:</label><br>
-  <input type = "text" name="country" id = "country">
-  <label for="city">city:</label><br>
-  <input type = "text" name="city" id = "city">
-  <label for="name">name:</label><br>
-  <input type = "text" name="name" id = "name">
+  <label for="repair_date">repair_date:</label><br>
+  <input type = "date" name="repair_date" id = "repair_date"><br>
+
 
   <button type="submit">add</button>
 </form>
@@ -82,28 +77,16 @@
   <thead>
   <tr>
     <td>id</td>
-    <td>hallNumber</td>
-    <td>endDate</td>
-    <td>name</td>
-    <td>country</td>
-    <td>city</td>
-    <td>venue</td>
-    <td>exhibits</td>
+    <td>Repair_date</td>
   </tr>
   </thead>
   <tbody>
-  <% List<Exhibition> exhibitions = (List<Exhibition>) request.getAttribute("exhibitions"); %>
+  <% List<Hall> halls = (List<Hall>) request.getAttribute("hall"); %>
   <% int i = 1 ;%>
-  <% for (Exhibition exhibition : exhibitions) {%>
+  <% for (Hall hall : halls) {%>
   <tr>
-    <td><%= exhibition.getId() %></td>
-    <td><%= i %></td>
-    <td><%= exhibition.getEndDate()%></td>
-    <td><%= exhibition.getName()%></td>
-    <td><%= exhibition.getCountry()%></td>
-    <td><%= exhibition.getCity()%></td>
-    <td><%= exhibition.getVenue()%></td>
-    <td><%= exhibition.getExhibitList().toString()%></td>
+    <td><%= hall.getHallNumber() %></td>
+    <td><%= hall.getRepair_date() %></td>
   </tr>
   <% i++;} %>
   </tbody>

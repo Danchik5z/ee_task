@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class    UpdateDeleteServlet extends HttpServlet {
+public class Up extends HttpServlet {
     DBService dbService = DBService.getInstance();
 
     @Override
@@ -19,7 +19,7 @@ public class    UpdateDeleteServlet extends HttpServlet {
         if (req.getParameter("delete") != null) {
             try {
                 dbService.delete(req.getParameter("class"), Integer.parseInt(req.getParameter("delete")));
-                resp.sendRedirect(req.getContextPath() + "/clientclient");
+                resp.sendRedirect(req.getContextPath() + "/exhibition");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -63,7 +63,7 @@ public class    UpdateDeleteServlet extends HttpServlet {
                 Client client = new Client(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), req.getParameter("email"));
                 try {
                     dbService.update("client",client);
-                    resp.sendRedirect(req.getContextPath() + "/clientclient" );
+                    resp.sendRedirect(req.getContextPath() + "/exhibition" );
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

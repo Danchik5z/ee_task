@@ -27,10 +27,6 @@
     <input type="submit" value="exhibition" />
 </form>
 
-<form action="${pageContext.request.contextPath}/hall">
-    <input type="submit" value="hall" />
-</form>
-
 <form action="${pageContext.request.contextPath}/ticket">
     <input type="submit" value="ticket" />
 </form>

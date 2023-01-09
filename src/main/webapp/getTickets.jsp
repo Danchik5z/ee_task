@@ -16,50 +16,33 @@
 <h>Create</h>
 <form action="${pageContext.request.contextPath}/client_crud" method = "post">
   <input type="hidden" name="action" value="create"/>
-  <label for="name">name:</label><br>
-  <input type = "text" name="name" id = "name">
-  <label for="email">email:</label><br>
-  <input type = "text" name="email" id = "email">
+  <label for="client_id">client_id:</label><br>
+  <input type = "text" name="client_id" id = "client_id"><br>
+  <label for="hall_id">hall_id:</label><br>
+  <input type = "text" name="hall_id" id = "hall_id"><br>
+  <label for="price">price:</label><br>
+  <input type = "text" name="price" id = "price">
+
 
   <button type="submit">add</button>
 </form>
 
-<h>Update</h>
-<form action="${pageContext.request.contextPath}/client_crud" method = "post">
-  <input type="hidden" name="action" value="update"/>
-  <label for = "update_id">id:</label>
-  <input type="number" name = "update_id" id = "update_id">
-  <label for="u_name">name:</label><br>
-  <input type = "text" name="u_name" id = "u_name">
-  <label for="u_email">email:</label><br>
-  <input type = "text" name="u_email" id = "u_email">
-
-  <button type="submit">add</button>
-</form>
 <h>find</h>
 
-<form action="${pageContext.request.contextPath}/clientclient" method = "post">
+<form action="${pageContext.request.contextPath}/exhibition" method = "post">
   <input type="hidden" name="action" value="find"/>
   <label for="find_id">id:</label><br>
   <input type = "number" name="find_id" id = "find_id">
   <button type="submit">find</button>
 </form>
-<h1 >delete</h1>
-<form action="${pageContext.request.contextPath}/client_crud" method = "post">
-  <input type="hidden" name="action" value="delete"/>
-  <label for="delete_id">id:</label><br>
-  <input type = "number" name="delete_id" id = "delete_id">
-  <button type="submit">delete</button>
-</form>
+
 <table>
   <thead>
   <tr>
     <td>id</td>
     <td>client_id</td>
     <td>hall_id</td>
-    <td>start</td>
     <td>price</td>
-    <td>hour</td>
   </tr>
   </thead>
   <tbody>
@@ -69,9 +52,18 @@
     <td><%= client.getID() %></td>
     <td><%= client.getClientID() %></td>
     <td><%= client.getHallID()%></td>
-    <td><%= client.getStartDate()%></td>
+
     <td><%= client.getPrice()%></td>
-    <td><%= client.getHour()%></td>
+    <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+      <input type = "hidden" name = "update" value = <%=client.getID()%>>
+      <input type = "hidden" name = "class" value="client">
+      <input type = "submit" value="update">
+    </form></td>
+    <td><form action="${pageContext.request.contextPath}/update_delete" method="get">
+      <input type = "hidden" name = "delete" value = <%=client.getID()%>>
+      <input type = "hidden" name = "class" value="client">
+      <input type = "submit" value="delete">
+    </form></td>
   </tr>
   <% } %>
   </tbody>

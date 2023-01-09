@@ -16,7 +16,7 @@
 <form action="${pageContext.request.contextPath}/client_crud" method = "post">
   <input type="hidden" name="action" value="create"/>
   <label for="name">name:</label><br>
-  <input type = "text" name="name" id = "name">
+  <input type = "text" name="name" id = "name"><br>
   <label for="email">email:</label><br>
   <input type = "text" name="email" id = "email">
 
@@ -48,7 +48,6 @@
     <td>id</td>
     <td>fio</td>
     <td>email</td>
-    <td>group_id</td>
   </tr>
   </thead>
   <tbody>

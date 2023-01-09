@@ -8,8 +8,9 @@ import java.sql.SQLException;
 
 public class ExhibitionService {
     public static String insert(Exhibition exhibition) {
-        return "Insert into exhibition(start_date,description,name,country,city,venue) VALUES(" +
-                exhibition.getStartDate() + "')";
+        return "Insert into exhibition(start_date,description) VALUES(" +
+                exhibition.getStartDate() + "','" +
+                exhibition.getDescription() + "')";
     }
 
     public static String update(Exhibition exhibition) {
